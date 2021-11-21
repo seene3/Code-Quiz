@@ -19,11 +19,11 @@ body {
    margin: 20px 0;
 }
 
-.start {
-    display: flex;
-    justify-content: center;
-}
-
 .hide {
     display: none;
+}
+
+#start {
+    display: flex;
+    justify-content: center;
 }
