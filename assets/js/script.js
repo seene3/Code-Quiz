@@ -23,10 +23,9 @@ function setNextQuestion() {
 
 function showQuestion(question) {
     questionElement.innerText = question.question
-
+    questionElement.id = question;
     question.answers.forEach(answer => {
         const button = document.createElement('button')
-
         button.innerText = answer.text
         button.classList.add('btn')
         button.classList.add('btn-primary')
@@ -51,7 +50,7 @@ function selectAnswer() {
 
 const questions = [
     {
-        question: 'what is 2+2?',
+        question: 'What is 2+2?',
         answers: [
             { text: 4, correct: true },
             { text: 22, correct: false },
@@ -59,28 +58,28 @@ const questions = [
             { text: 3, correct: false },
         ],
 
-        question: 'what is 2+2?',
+        question: 'What does CSS stand for',
         answers: [
-            { text: 4, correct: true },
-            { text: 22, correct: false },
-            { text: 2, correct: false },
-            { text: 3, correct: false },
+            { text: 'Cascading Structure Sheet', correct: false },
+            { text: 'Cascading Style Sheets', correct: true },
+            { text: 'Computer Style Sheet', correct: false },
+            { text: 'Computation Suited Syntax', correct: false },
         ],
 
-        question: 'what is 2+2?',
+        question: 'In css how do you call an Id?',
         answers: [
-            { text: 4, correct: true },
-            { text: 22, correct: false },
-            { text: 2, correct: false },
-            { text: 3, correct: false },
+            { text: 'the name', correct: false },
+            { text: '.', correct: false },
+            { text: '#', correct: true },
+            { text: '/', correct: false },
         ],
 
-        question: 'what is 2+2?',
+        question: 'In css how do you call a class?',
         answers: [
-            { text: 4, correct: true },
-            { text: 22, correct: false },
-            { text: 2, correct: false },
-            { text: 3, correct: false },
+            { text: 'the name', correct: false },
+            { text: '#', correct: false },
+            { text: '/', correct: false },
+            { text: '.', correct: true },
         ]
     }
 ]
