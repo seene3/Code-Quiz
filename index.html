@@ -9,9 +9,10 @@
     <title>Code Quiz</title>
 </head>
 <body>
+    <div id="timer"><h2>Timer: </h2> <p>00:00</p></div>
     <div class="container">
         <div id="question-container" class="hide">
-            <div id="question"><h2>Question</h2></div>
+            <div><h2 id="question">Question</h2></div>
             <div id="answer-buttons" class="btn-grid">
                 <button type="button" class="btn btn-primary btn-lg">Answer 1</button>
                 <button type="button" class="btn btn-primary btn-lg">Answer 2</button>
@@ -22,7 +23,9 @@
         <div id="start" class="start">
             <button type="button" id="start-btn" class="btn btn-success btn-lg"><h1>Start</h1></button>
         </div>
+        <div id="result" class="hide"></div>
     </div>
+    
 </body>
     <script src="assets/js/script.js"></script>
 </html>
