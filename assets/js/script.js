@@ -9,16 +9,20 @@ const questionContainerEl = document.getElementById('question-container');
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const resultEl = document.getElementById('result')
+const formEl = document.getElementById('highscore');
 const timer = document.getElementById('timer')
 let timeSecond = 60;
+let countingDown = true;
 
 function countdown() {
     const countdown = setInterval(() => {
-    timeSecond--;
-    timer.innerHTML = timeSecond
-    if (timeSecond <= 0) {
-        clearInterval(countdown)
-    }
+        if (countingDown) {
+            timeSecond--;
+        }
+        timer.innerHTML = timeSecond
+        if (timeSecond <= 0) {
+            clearInterval(countdown)
+        }
     }, 1000)
 }
 
@@ -30,7 +34,6 @@ startButtonEl.addEventListener('click', startGame);
 
 //hide start button, show first question, start timer
 function startGame() {
-    console.log({currentQuestionIndex})
     countdown();
     startDivEl.style.display = 'none';
     questionContainerEl.classList.remove('hide')
@@ -42,12 +45,9 @@ function showQuestion(questionIndex) {
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
-    console.log({questionIndex})
     questionElement.innerText = questions[questionIndex].question
     questionElement.id = questionIndex;
     let currentQuestion = questions[questionIndex]
-    console.log({questions})
-    console.log({currentQuestion})
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerText = answer.text
@@ -65,20 +65,20 @@ function showQuestion(questionIndex) {
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = JSON.parse(selectedButton.dataset.correct)
-    console.log({correct})
     setStatusClass(selectedButton, correct)
     currentQuestionIndex++
-    showQuestion(currentQuestionIndex)
-    if (currentQuestionIndex > questions.length) {
+    if (currentQuestionIndex === questions.length || timeSecond === 0) {
         //end timer go to results
+        endQuiz()
+    }
+    else {
+        showQuestion(currentQuestionIndex)
     }
 }
 
 //getting setting class if answer right or wrong
 function setStatusClass(element, correct) {
     clearStatusClass(element)
-    console.log({element})
-    console.log({correct})
     if (correct){
         resultEl.classList.remove('hide')
         resultEl.innerHTML = "Correct"
@@ -86,6 +86,7 @@ function setStatusClass(element, correct) {
     else{
         resultEl.classList.remove('hide')
         resultEl.innerHTML = "Wrong"
+        timeSecond = timeSecond - 10
     }
 }
 
@@ -94,7 +95,13 @@ function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
- 
+
+function endQuiz() {
+    questionContainerEl.classList.add('hide')
+    resultEl.classList.add('hide')
+    formEl.classList.remove('hide')
+    countingDown = false
+}
 
 //questions
 const questions = [

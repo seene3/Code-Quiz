@@ -7,7 +7,6 @@
     margin: 0;
     display: block;
     width: 100vw;
-    height: 100vh;
     justify-content: center;
     align-items: center;
 }
@@ -20,7 +19,7 @@
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 #start {
@@ -41,4 +40,9 @@
 
 .timer p {
     font-size: 30px;
+}
+
+#highscore {
+    display: flex;
+    justify-content: center;
 }
