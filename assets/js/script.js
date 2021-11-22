@@ -9,24 +9,29 @@ const questionContainerEl = document.getElementById('question-container');
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const resultEl = document.getElementById('result')
+const timer = document.getElementById('timer')
+let timeSecond = 60;
 
-var startingTime = 60;
-
-let time = startingTime
-
-var countdownEl = document.getElementById('timer')
+function countdown() {
+    const countdown = setInterval(() => {
+    timeSecond--;
+    timer.innerHTML = timeSecond
+    if (timeSecond <= 0) {
+        clearInterval(countdown)
+    }
+    }, 1000)
+}
 
 let currentQuestionIndex = 0
 
 startButtonEl.addEventListener('click', startGame);
 
-function updateCountdown() {
-    time--;
-}
+
 
 //hide start button, show first question, start timer
 function startGame() {
     console.log({currentQuestionIndex})
+    countdown();
     startDivEl.style.display = 'none';
     questionContainerEl.classList.remove('hide')
     showQuestion(currentQuestionIndex)

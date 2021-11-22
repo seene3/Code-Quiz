@@ -35,10 +35,10 @@
     text-align: center;
 }
 
-#timer {
+.timer {
     display: flex;
 }
 
-#timer p {
+.timer p {
     font-size: 30px;
 }
